@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+	<!-- namespace表示命名空间，值必须为接口的名词(包括包名) -->
+	<!-- 实现类没有，mybatis框架会生成接口的实现类 -->
+	<mapper namespace="cn.com.green.dao.DeptDao">
+	
+		<!-- 添加部门信息 -->
+		<!-- void insertDept(Dept dept) -->
+		<insert id="insertDept" parameterType="cn.com.green.bean.Dept">
+			insert into dept (
+				dept_name,dept_loc
+			) values(
+				#{deptName},#{deptLoc}
+			)
+		</insert>
+		
+		<!-- 查询所有 -->
+		<!-- Dept selectAll() -->
+		<select id="selectAll" resultType="cn.com.green.bean.Dept">
+			select id,dept_name deptName,dept_loc deptLoc from dept
+		</select>
+		
+		<!-- 根据id删除部门 -->
+		<!-- void deleteById(Integer id) -->
+		<delete id="deleteById">
+			delete from dept
+			where 
+				id=#{id}
+		</delete>
+	</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	

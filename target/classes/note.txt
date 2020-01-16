@@ -1,0 +1,6 @@
+create table dept(
+	id int auto_increment primary key,
+	dept_name varchar(30),
+	dept_loc varchar(50)
+	)default charset=utf8
+	
