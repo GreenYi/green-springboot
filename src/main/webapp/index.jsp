@@ -5,35 +5,34 @@
 <title>主页</title>
 </head>
 <body style="font-size:30px;">
-	<h1>假如我是主页</h1>
-	<%-- 
+	<h1 style="text-align:center">主页</h1>
 	<table border="1" style="width: 80%" cellspacing="0">
 		<tr>
-			<th>父类</th>
-			<th>功能描述</th>
-			<th>地址</th>
+			<th>功能</th>
+			<th>描述</th>
+			<th>按钮</th>
 		</tr>
 		<tr>
-			<td>部门</td>
-			<td>增加部门</td>
+			<td>部门（测试）</td>
+			<td>用于测试数据库</td>
 			<td>
-				<a href="${pageContext.request.contextPath}/dept/showAddDept.html">添加</a>
+				<a href="${pageContext.request.contextPath}/dept/showAddDept.htm">点我</a>
 			</td>
 		</tr>
 		<tr>
-			<td>部门</td>
-			<td>显示部门</td>
+			<td>身份证核验</td>
+			<td>快速查询姓名与身份证号码是否一致，实时联网公安核查，100%准确。</td>
 			<td>
-				<a href="${pageContext.request.contextPath}/dept/getAllDept.html">显示</a>
+				<a href="${pageContext.request.contextPath}/idCard/show.htm">点我</a>
+			</td>
+		</tr>
+		<tr>
+			<td>想要什么新功能请联系我</td>
+			<td></td>
+			<td>
 			</td>
 		</tr>
 	</table>
-	 --%>
-	 <form action="${pageContext.request.contextPath}/idCard/getIdCardInfo.html" method="post">
-		姓名：<input type="text" name="name" id="name"/><br>
-		身份证号码：<input type="text" name="cardno" id="cardno"/><br>
-		<input type="submit" value="查询">
-	</form>
-	<%@ include file="web/idCard/foot.jsp"%>
+	<%@ include file="web/common/foot.jsp"%>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package cn.com.green.controller;
+package cn.com.green.dept.controller;
 
 import java.util.List;
 
@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.com.green.bean.Dept;
-import cn.com.green.service.IDeptService;
+import cn.com.green.dept.bean.Dept;
+import cn.com.green.dept.service.IDeptService;
+
 
 @Controller
 @RequestMapping("/dept")
@@ -19,7 +20,7 @@ public class DeptController {
 	//显示addDept页面
 	@RequestMapping("/showAddDept")
 	public String showAddDept() {
-		return "addDept";
+		return "/dept/addDept";
 	}
 	//添加部门信息
 	@RequestMapping("/addDept")
@@ -29,7 +30,7 @@ public class DeptController {
 		dept.setDeptName(deptName);
 		dept.setDeptLoc(deptLoc);
 		deptService.addDept(dept);
-		return "index";
+		return "/dept/index";
 	}
 	@RequestMapping("/getAllDept")
 	public String getAllDept(ModelMap map) {
@@ -38,7 +39,7 @@ public class DeptController {
 		//2.把list添加到map中
 		map.addAttribute("list",list);
 		//3.return 
-		return "showAll";
+		return "/dept/showAll";
 	}
 	//删除部门信息
 	@RequestMapping("/removeDept")
@@ -46,7 +47,7 @@ public class DeptController {
 		//1.调用业务层的删除的方法
 		deptService.removeDept(id);
 		//2.设置重定向
-		return "redirect:getAllDept";
+		return "redirect:getAllDept.htm";
 	}
 	
 }

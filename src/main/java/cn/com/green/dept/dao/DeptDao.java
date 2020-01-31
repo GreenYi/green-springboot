@@ -1,8 +1,9 @@
-package cn.com.green.dao;
+package cn.com.green.dept.dao;
 
 import java.util.List;
 
-import cn.com.green.bean.Dept;
+import cn.com.green.dept.bean.Dept;
+
 
 public interface DeptDao {
 	void insertDept(Dept dept);

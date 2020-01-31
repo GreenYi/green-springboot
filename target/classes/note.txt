@@ -3,4 +3,3 @@ create table dept(
 	dept_name varchar(30),
 	dept_loc varchar(50)
 	)default charset=utf8
-	

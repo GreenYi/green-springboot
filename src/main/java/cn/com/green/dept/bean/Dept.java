@@ -1,4 +1,4 @@
-package cn.com.green.bean;
+package cn.com.green.dept.bean;
 
 import java.io.Serializable;
 

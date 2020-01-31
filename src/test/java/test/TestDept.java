@@ -10,12 +10,12 @@ import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.alibaba.fastjson.JSONObject;
-
-import cn.com.green.bean.Dept;
-import cn.com.green.dao.DeptDao;
-import cn.com.green.service.IDeptService;
+import cn.com.green.dept.bean.Dept;
+import cn.com.green.dept.dao.DeptDao;
+import cn.com.green.dept.service.IDeptService;
 import cn.com.green.util.common.HttpUtils;
+
+import com.alibaba.fastjson.JSONObject;
 
 public class TestDept {
 	@Test

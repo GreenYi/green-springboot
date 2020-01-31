@@ -1,4 +1,4 @@
-package cn.com.green.service;
+package cn.com.green.dept.service;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import cn.com.green.bean.Dept;
-import cn.com.green.dao.DeptDao;
+import cn.com.green.dept.bean.Dept;
+import cn.com.green.dept.dao.DeptDao;
+
 
 @Service
 public class DeptService implements IDeptService{

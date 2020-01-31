@@ -36,7 +36,7 @@
 	<!-- Spring和mybatis整合 -->
 	<!-- 扫描持久层的包 -->
 	<bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="cn.com.green.dao"/>
+		<property name="basePackage" value="cn.com.green.dept.dao"/>
 	</bean>
 	
 	<!-- SqlSessionFactoryBean工厂 -->

@@ -6,6 +6,6 @@
 </head>
 <body style="font-size:30px;">
 	添加成功
-	<a href="${pageContext.request.contextPath}/dept/getAllDept.html">显示部门信息</a>
+	<a href="${pageContext.request.contextPath}/dept/getAllDept.htm">显示部门信息</a>
 </body>
 </html>

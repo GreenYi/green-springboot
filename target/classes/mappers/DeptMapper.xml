@@ -3,11 +3,11 @@
 		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 	<!-- namespace表示命名空间，值必须为接口的名词(包括包名) -->
 	<!-- 实现类没有，mybatis框架会生成接口的实现类 -->
-	<mapper namespace="cn.com.green.dao.DeptDao">
+	<mapper namespace="cn.com.green.dept.dao.DeptDao">
 	
 		<!-- 添加部门信息 -->
 		<!-- void insertDept(Dept dept) -->
-		<insert id="insertDept" parameterType="cn.com.green.bean.Dept">
+		<insert id="insertDept" parameterType="cn.com.green.dept.bean.Dept">
 			insert into dept (
 				dept_name,dept_loc
 			) values(
@@ -17,7 +17,7 @@
 		
 		<!-- 查询所有 -->
 		<!-- Dept selectAll() -->
-		<select id="selectAll" resultType="cn.com.green.bean.Dept">
+		<select id="selectAll" resultType="cn.com.green.dept.bean.Dept">
 			select id,dept_name deptName,dept_loc deptLoc from dept
 		</select>
 		

@@ -16,7 +16,7 @@ public class IdCardController {
 	@Resource
 	private IdCardService idCardService;
 	
-	//显示页面
+	//查询完成页面
 	@RequestMapping("/getIdCardInfo")
 	public ModelAndView getIdCardInfo(HttpServletRequest req, ModelAndView mv) {
 		String cardno = req.getParameter("cardno");
@@ -33,4 +33,10 @@ public class IdCardController {
 		return mv;
 	}
 	
+	//显示页面
+	@RequestMapping("/show")
+	public ModelAndView show(HttpServletRequest req, ModelAndView mv) {
+		mv.setViewName("/idCard/getIdCardInfo");
+		return mv;
+	}
 }

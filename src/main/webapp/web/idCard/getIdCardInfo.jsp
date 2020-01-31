@@ -8,7 +8,7 @@
 </head>
 <body style="font-size:30px;">
 	<span>快速查询姓名与身份证号码是否一致，实时联网公安核查，100%准确。</span>
-	<form action="${pageContext.request.contextPath}/idCard/getIdCardInfo.html" method="post">
+	<form action="${pageContext.request.contextPath}/idCard/getIdCardInfo.htm" method="post">
 		姓名：<input type="text" name="name" id="name"/><br>
 		身份证号码：<input type="text" name="cardno" id="cardno"/><br>
 		<input type="submit" value="查询">
@@ -30,6 +30,6 @@
 			<td>${idCard.address}</td>
 		</tr>
 	</table>
-	<%@ include file="foot.jsp"%>
+	<%@ include file="/web/common/foot.jsp"%>
 </body>
 </html>

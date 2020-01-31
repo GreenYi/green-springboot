@@ -19,7 +19,7 @@
 				<td>${d.deptName}</td>
 				<td>${d.deptLoc}</td>
 				<td>
-					<a href="${pageContext.request.contextPath}/dept/removeDept.html?id=${d.id}">删除</a>
+					<a href="${pageContext.request.contextPath}/dept/removeDept.htm?id=${d.id}">删除</a>
 					<a href="">修改</a>
 				</td>
 			</tr>

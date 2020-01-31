@@ -36,6 +36,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>dispatcherServlet</servlet-name>
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
 </web-app>
