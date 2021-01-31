@@ -85,7 +85,6 @@ public class DeptController {
     public Dept updateDept(@PathVariable Long id, @RequestBody Dept dept) {
         log.info("updateDept");
         deptService.update(dept);
-        System.out.println("aa");
         return deptService.get(dept.getId());
     }
 
