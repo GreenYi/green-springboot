@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3307/green?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT%2b8
+    #过时的驱动
+    #driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  mapper-locations: classpath:mappers/*Mapper.xml
+  type-aliases-package: top.greenyi.green.bean
+
+#showSql
+logging:
+  level:
+    com:
+      example:
+        mapper : debug
+#Druid
+druid:
+  loginUsername: root
+  loginPassword: root
+
+#和风天气
+weather:
+  key: fddfaceae56c427281671b3cb3ef732a
