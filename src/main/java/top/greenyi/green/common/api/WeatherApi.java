@@ -1,6 +1,7 @@
 package top.greenyi.green.common.api;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,10 @@ import java.net.URL;
  * 暂时没有使用到此API
  * @author Green
  */
+@Slf4j
 @Component
 public class WeatherApi {
+
     @Value("${weather.key}")
     private String weatherKey;
 
@@ -49,7 +52,7 @@ public class WeatherApi {
             while ( ( line = br.readLine() ) != null ) {
                 sb.append(line);
             }
-            System.out.println("Result:" + sb.toString());
+            log.info("result:{}", sb.toString());
         } catch ( Exception ignored ) {
             ignored.printStackTrace();
         } finally {
