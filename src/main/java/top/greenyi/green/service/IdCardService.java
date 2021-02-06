@@ -1,18 +1,18 @@
 package top.greenyi.green.service;
 
+import top.greenyi.green.base.BaseService;
 import top.greenyi.green.bean.IdCard;
-
-import java.util.Map;
 
 /**
  * @author Green
  */
-public interface IdCardService {
+public interface IdCardService extends BaseService<IdCard> {
 
     /**
      * 获取身份证
-     * @param map
+     * @param cardNo
+     * @param name
      * @return
      */
-    IdCard getIdCard(Map<String, String> map);
+    IdCard getIdCard(String cardNo, String name);
 }

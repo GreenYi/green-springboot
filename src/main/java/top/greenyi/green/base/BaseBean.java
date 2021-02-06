@@ -1,21 +1,26 @@
 package top.greenyi.green.base;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Green
  */
 @NoArgsConstructor
-@Getter
-@Setter
-@ToString
-public class BaseBean {
+@Data
+public class BaseBean implements Serializable {
+    /**
+     * 主键
+     */
     private Long id;
+    /**
+     * 创建时间
+     */
     private Date createTime;
+    /**
+     * 修改时间
+     */
     private Date updateTime;
 }

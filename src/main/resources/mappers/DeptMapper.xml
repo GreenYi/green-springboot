@@ -5,57 +5,65 @@
 	<mapper namespace="top.greenyi.green.repository.DeptRepository">
 		<resultMap id="BaseResultMap" type="top.greenyi.green.bean.Dept">
 			<result column="id" jdbcType="INTEGER" property="id" />
+			<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+			<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
 			<result column="deptName" jdbcType="VARCHAR" property="deptName" />
 			<result column="deptLoc" jdbcType="VARCHAR" property="deptLoc" />
 		</resultMap>
 		<!-- 查询所有 -->
 		<!-- Dept getAll() -->
 		<select id="getAll" resultType="top.greenyi.green.bean.Dept">
-			select id,dept_name deptName,dept_loc deptLoc from dept
+			SELECT
+				id,
+				create_time createTime,
+				update_time updateTime,
+				dept_name deptName,
+				dept_loc deptLoc
+			FROM
+				dept
 		</select>
 
 
 		<!-- 添加部门信息 -->
 		<!-- void addDept(Dept dept) -->
 		<insert id="insert" parameterType="top.greenyi.green.bean.Dept">
-			insert into dept (
-				create_time,dept_name,dept_loc
-			) values(
-				#{createTime},#{deptName},#{deptLoc}
-			)
+			INSERT INTO dept ( create_time, dept_name, dept_loc )
+			VALUES
+				(#{createTime},#{deptName},#{deptLoc})
 		</insert>
 		
 		<!-- 根据id删除部门 -->
 		<!-- void removeDept(Integer id) -->
 		<delete id="delete">
-			delete from dept
-			where 
-				id=#{id}
+			DELETE
+			FROM
+				dept
+			WHERE
+				id = #{id}
 		</delete>
 
 		<!--根据id修改部门-->
 		<!--Long updateDept(Dept dept);-->
 		<update id="update" parameterType="top.greenyi.green.bean.Dept">
-			update dept
-			set
-				update_time=#{updateTime},
-				dept_name=#{deptName},
-				dept_loc=#{deptLoc}
-			where
-				id=#{id}
+			UPDATE dept
+			SET update_time = #{updateTime},
+				dept_name = #{deptName},
+				dept_loc = #{deptLoc}
+			WHERE
+				id = #{id}
 		</update>
 
 		<!--根据id获取部门-->
 		<!--Dept get(Long id);-->
 		<select id="get" resultType="top.greenyi.green.bean.Dept">
-			select
+			SELECT
 				id,
 				dept_name deptName,
 				dept_loc deptLoc
-			from
+			FROM
 				dept
-			where
-				id=#{id}
+			WHERE
+				id = #{id}
 		</select>
 	</mapper>
 	

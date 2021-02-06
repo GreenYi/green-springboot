@@ -1,4 +1,4 @@
-package top.greenyi.green.configuration;
+package top.greenyi.green.common.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;

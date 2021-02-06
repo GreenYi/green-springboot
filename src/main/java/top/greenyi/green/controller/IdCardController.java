@@ -7,16 +7,18 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import top.greenyi.green.base.BaseResponse;
+import top.greenyi.green.common.response.ResponseCode;
+import top.greenyi.green.common.response.ResponseResult;
 import top.greenyi.green.bean.IdCard;
 import top.greenyi.green.service.IdCardService;
-
-import java.util.HashMap;
 
 /**
  * @author Green
  */
 @Slf4j
 @Api(tags = "身份认证")
+@BaseResponse
 @RestController
 @RequestMapping("/id-card")
 public class IdCardController {
@@ -33,13 +35,9 @@ public class IdCardController {
             @ApiImplicitParam(name = "idCard", value = "身份证信息", dataType = "IdCard", dataTypeClass = IdCard.class, paramType = "body", required = true),
     })
     @PostMapping("/id-card")
-    public IdCard getIdCardInfo(@RequestBody IdCard idCard) {
-        HashMap<String, String> hashMap = new HashMap<String, String>(0);
-        hashMap.put("cardNo", idCard.getCardNo());
-        hashMap.put("name", idCard.getName());
-        IdCard dbIdCard = idCardService.getIdCard(hashMap);
-        log.info(dbIdCard.toString());
-        return dbIdCard;
+    public ResponseResult getIdCard(@RequestBody IdCard idCard) {
+        IdCard responseIdCard = idCardService.getIdCard(idCard.getCardNo(), idCard.getName());
+        return new ResponseResult(ResponseCode.SUCCESS_GET, responseIdCard);
     }
 
 }

@@ -6,6 +6,7 @@ import top.greenyi.green.common.api.IdCardApi;
 import top.greenyi.green.bean.IdCard;
 import top.greenyi.green.service.IdCardService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,25 +14,37 @@ import java.util.Map;
  */
 @Service
 public class IdCardServiceImpl implements IdCardService {
+
     @Autowired
     private IdCardApi idCardApi;
-    @Override
-    public IdCard getIdCard(Map<String, String> map) {
-        IdCard idCard = null;
-        String cardNo = map.get("cardNo");
-        String name = map.get("name");
-        Map<String, Map<String, String>> idCardInfo = idCardApi.getIdCardInfo(cardNo, name);
-        if (!idCardInfo.isEmpty()) {
-            idCard = new IdCard();
-            Map<String, String> resp = idCardInfo.get("resp");
-            Map<String, String> data = idCardInfo.get("data");
-            idCard.setDesc(resp.get("desc"));
-            idCard.setCode(resp.get("code"));
-            idCard.setBirthday(data.get("birthday"));
-            idCard.setSex(data.get("sex"));
-            idCard.setAddress(data.get("address"));
-        }
-        return idCard;
 
+    @Override
+    public IdCard getIdCard(String cardNo, String name) {
+        return idCardApi.getIdCard(cardNo, name);
+    }
+
+    @Override
+    public void insert(IdCard idCard) {
+
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public Long update(IdCard idCard) {
+        return null;
+    }
+
+    @Override
+    public IdCard get(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<IdCard> getAll() {
+        return null;
     }
 }
