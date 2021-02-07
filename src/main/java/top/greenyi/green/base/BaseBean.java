@@ -1,6 +1,7 @@
 package top.greenyi.green.base;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;

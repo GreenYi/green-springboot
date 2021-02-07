@@ -1,6 +1,8 @@
 package top.greenyi.green.bean;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import top.greenyi.green.base.BaseBean;
 
 /**

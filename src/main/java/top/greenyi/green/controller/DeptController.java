@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.greenyi.green.base.BaseResponse;
+import top.greenyi.green.bean.Dept;
 import top.greenyi.green.common.response.ResponseCode;
 import top.greenyi.green.common.response.ResponseResult;
-import top.greenyi.green.bean.Dept;
 import top.greenyi.green.service.DeptService;
 
 import java.util.List;
