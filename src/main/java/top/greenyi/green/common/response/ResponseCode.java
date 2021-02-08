@@ -44,14 +44,14 @@ public enum ResponseCode {
     /**
      * 状态码
      */
-    private int status;
+    private Integer status;
 
     /**
      * 返回信息
      */
     private String message;
 
-    ResponseCode(int status, String message) {
+    ResponseCode(Integer status, String message) {
         this.status = status;
         this.message = message;
     }

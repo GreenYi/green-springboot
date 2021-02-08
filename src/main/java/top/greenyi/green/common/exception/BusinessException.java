@@ -14,7 +14,7 @@ import top.greenyi.green.common.response.ResponseCode;
 @EqualsAndHashCode(callSuper = false)
 public class BusinessException extends RuntimeException{
 
-    private int status;
+    private Integer status;
     private String message;
 
     public BusinessException(ResponseCode responseCode) {
