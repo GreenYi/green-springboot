@@ -92,6 +92,7 @@ public class DeptController {
 
     /**
      * 获取所有部门
+     * test login github
      * @return
      */
     @ApiOperation(value = "获取所有部门", httpMethod = "GET")
