@@ -92,6 +92,7 @@ public class DeptController {
 
     /**
      * 获取所有部门
+     *
      * @return
      */
     @ApiOperation(value = "获取所有部门", httpMethod = "GET")
