@@ -31,8 +31,8 @@ public class DeptController {
 
     /**
      * 添加部门信息
-     * @param dept
-     * @return
+     * @param dept 部门
+     * @return 统一的公共响应体
      */
     @ApiOperation(value = "添加部门信息", httpMethod = "POST")
     @ApiImplicitParams({
@@ -46,8 +46,8 @@ public class DeptController {
 
     /**
      * 删除部门信息
-     * @param id
-     * @return
+     * @param id 部门ID
+     * @return 统一的公共响应体
      */
     @ApiOperation(value = "删除部门信息", httpMethod = "DELETE")
     @ApiImplicitParams({
@@ -62,9 +62,9 @@ public class DeptController {
 
     /**
      * 修改部门信息
-     * @param id
-     * @param dept
-     * @return
+     * @param id 部门ID
+     * @param dept 部门
+     * @return 统一的公共响应体
      */
     @ApiOperation(value = "修改部门信息", httpMethod = "PUT")
     @ApiImplicitParams({
@@ -81,7 +81,7 @@ public class DeptController {
 
     /**
      * 获取部门信息
-     * @return
+     * @return 统一的公共响应体
      */
     @ApiOperation(value = "获取部门信息", httpMethod = "GET")
     @GetMapping("/{id}")
@@ -92,8 +92,7 @@ public class DeptController {
 
     /**
      * 获取所有部门
-     *
-     * @return
+     * @return 统一的公共响应体
      */
     @ApiOperation(value = "获取所有部门", httpMethod = "GET")
     @GetMapping("/list")
