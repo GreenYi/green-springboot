@@ -1,9 +1,5 @@
 package top.greenyi.green.common.response;
 
-/**
- * @author Green
- */
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -36,7 +32,7 @@ public class ResponseResultHandlerAdvice implements ResponseBodyAdvice {
                 responseResult = (ResponseResult)body;
             }else{
                 // 只有正常返回的结果才会进入这个判断流程，所以返回正常成功的状态码
-                responseResult = new ResponseResult(ResponseCode.SUCCESS.getStatus(),ResponseCode.SUCCESS.getMessage(),body);
+                responseResult = new ResponseResult(ResponseCode.SUCCESS,body);
             }
             log.info("{}方法响应信息为: {}", returnType.getMethod().getName(), responseResult.toString());
             return responseResult;

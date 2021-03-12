@@ -23,7 +23,7 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(Exception.class)
     public ResponseResult handleException(Exception e){
         log.error(e.getMessage(),e);
-        return new ResponseResult(ResponseCode.SERVICE_ERROR.getStatus(),ResponseCode.SERVICE_ERROR.getMessage(),null);
+        return new ResponseResult(ResponseCode.SERVICE_ERROR,null);
     }
 
     /**
@@ -34,7 +34,7 @@ public class ExceptionHandlerAdvice {
     @ExceptionHandler(RuntimeException.class)
     public ResponseResult handleRuntimeException(RuntimeException e){
         log.error(e.getMessage(),e);
-        return new ResponseResult(ResponseCode.SERVICE_ERROR.getStatus(),ResponseCode.SERVICE_ERROR.getMessage(),null);
+        return new ResponseResult(ResponseCode.SERVICE_ERROR,null);
     }
 
     /**
