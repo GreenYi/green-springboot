@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.greenyi.green.base.BaseResponse;
 import top.greenyi.green.bean.IdCard;
+import top.greenyi.green.common.response.BaseResponse;
 import top.greenyi.green.common.response.ResponseCode;
 import top.greenyi.green.common.response.ResponseResult;
-import top.greenyi.green.service.IdCardService;
+import top.greenyi.green.service.IIdCardService;
 
 /**
  * @author Green
@@ -26,7 +26,7 @@ import top.greenyi.green.service.IdCardService;
 @RequestMapping("/id-card")
 public class IdCardController {
     @Autowired
-    private IdCardService idCardService;
+    private IIdCardService idCardService;
 
     /**
      * 身份认证

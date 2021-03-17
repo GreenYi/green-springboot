@@ -1,5 +1,7 @@
 package top.greenyi.green.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -7,11 +9,11 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import top.greenyi.green.base.BaseResponse;
 import top.greenyi.green.bean.Dept;
+import top.greenyi.green.common.response.BaseResponse;
 import top.greenyi.green.common.response.ResponseCode;
 import top.greenyi.green.common.response.ResponseResult;
-import top.greenyi.green.service.DeptService;
+import top.greenyi.green.service.IDeptService;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ import java.util.List;
 public class DeptController {
 
     @Autowired
-    private DeptService deptService;
+    private IDeptService deptService;
 
     /**
      * 添加部门信息
@@ -40,7 +42,7 @@ public class DeptController {
     })
     @PostMapping("/depts")
     public ResponseResult insert(@RequestBody Dept dept) {
-        deptService.insert(dept);
+        deptService.save(dept);
         return new ResponseResult(ResponseCode.SUCCESS_INSERT, dept);
     }
 
@@ -55,8 +57,8 @@ public class DeptController {
     })
     @DeleteMapping("/{id}")
     public ResponseResult delete(@PathVariable Long id) {
-        Dept dept = deptService.get(id);
-        deptService.delete(id);
+        Dept dept = deptService.getById(id);
+        deptService.removeById(id);
         return new ResponseResult(ResponseCode.SUCCESS_DELETE, dept);
     }
 
@@ -74,8 +76,8 @@ public class DeptController {
     @PutMapping("/{id}")
     public ResponseResult update(@PathVariable Long id, @RequestBody Dept dept) {
         dept.setId(id);
-        deptService.update(dept);
-        Dept updatedDept = deptService.get(id);
+        deptService.updateById(dept);
+        Dept updatedDept = deptService.getById(id);
         return new ResponseResult(ResponseCode.SUCCESS_UPDATE, updatedDept);
     }
 
@@ -86,7 +88,7 @@ public class DeptController {
     @ApiOperation(value = "获取部门信息", httpMethod = "GET")
     @GetMapping("/{id}")
     public ResponseResult get(@PathVariable Long id) {
-        Dept dept = deptService.get(id);
+        Dept dept = deptService.getById(id);
         return new ResponseResult(ResponseCode.SUCCESS_GET, dept);
     }
 
@@ -97,8 +99,18 @@ public class DeptController {
     @ApiOperation(value = "获取所有部门", httpMethod = "GET")
     @GetMapping("/list")
     public ResponseResult getAll() {
-        List<Dept> list = deptService.getAll();
+        List<Dept> list = deptService.list();
         return new ResponseResult(ResponseCode.SUCCESS_GET, list);
     }
 
+    /**
+     * 分页获取所有部门
+     * @return 统一的公共响应体
+     */
+    @ApiOperation(value = "分页获取所有部门", httpMethod = "GET")
+    @GetMapping("/list-page")
+    public ResponseResult getAllPage() {
+        IPage<Dept> page = deptService.page(new Page<>());
+        return new ResponseResult(ResponseCode.SUCCESS_GET, page);
+    }
 }

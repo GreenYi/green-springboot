@@ -1,4 +1,4 @@
-package top.greenyi.green.base;
+package top.greenyi.green.common.response;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

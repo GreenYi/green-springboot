@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Green
  */
 
-@MapperScan("top.greenyi.green.repository")
+@MapperScan("top.greenyi.green.mapper")
 @SpringBootApplication
 public class GreenApplication {
 

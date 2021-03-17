@@ -14,16 +14,24 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-mybatis:
-  mapper-locations: classpath:mappers/*Mapper.xml
-  type-aliases-package: top.greenyi.green.bean
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+  mapper-locations: classpath:mapper/*Mapper.xml
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 1
+      # 删除后
+      logic-delete-value: 0
 
 #showSql
 logging:
   level:
-    com:
-      example:
-        mapper : info
+    root: info
+    top.green: info
 #Druid
 druid:
   loginUsername: root

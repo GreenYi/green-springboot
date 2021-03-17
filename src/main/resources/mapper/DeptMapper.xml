@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<!-- namespace表示命名空间，值必须为接口的名词(包括包名) -->
 	<!-- 实现类没有，mybatis框架会生成接口的实现类 -->
-	<mapper namespace="top.greenyi.green.repository.DeptRepository">
+	<mapper namespace="top.greenyi.green.mapper.DeptMapper">
 		<resultMap id="BaseResultMap" type="top.greenyi.green.bean.Dept">
 			<result column="id" jdbcType="INTEGER" property="id" />
 			<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
@@ -21,49 +21,6 @@
 				dept_loc deptLoc
 			FROM
 				dept
-		</select>
-
-
-		<!-- 添加部门信息 -->
-		<!-- void addDept(Dept dept) -->
-		<insert id="insert" parameterType="top.greenyi.green.bean.Dept">
-			INSERT INTO dept ( create_time, dept_name, dept_loc )
-			VALUES
-				(#{createTime},#{deptName},#{deptLoc})
-		</insert>
-		
-		<!-- 根据id删除部门 -->
-		<!-- void removeDept(Integer id) -->
-		<delete id="delete">
-			DELETE
-			FROM
-				dept
-			WHERE
-				id = #{id}
-		</delete>
-
-		<!--根据id修改部门-->
-		<!--Long updateDept(Dept dept);-->
-		<update id="update" parameterType="top.greenyi.green.bean.Dept">
-			UPDATE dept
-			SET update_time = #{updateTime},
-				dept_name = #{deptName},
-				dept_loc = #{deptLoc}
-			WHERE
-				id = #{id}
-		</update>
-
-		<!--根据id获取部门-->
-		<!--Dept get(Long id);-->
-		<select id="get" resultType="top.greenyi.green.bean.Dept">
-			SELECT
-				id,
-				dept_name deptName,
-				dept_loc deptLoc
-			FROM
-				dept
-			WHERE
-				id = #{id}
 		</select>
 	</mapper>
 	

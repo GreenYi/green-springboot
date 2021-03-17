@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.greenyi.green.base.BaseResponse;
+import top.greenyi.green.common.response.BaseResponse;
 import top.greenyi.green.common.response.ResponseCode;
 import top.greenyi.green.common.response.ResponseResult;
 

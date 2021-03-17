@@ -1,12 +1,12 @@
 package top.greenyi.green.service;
 
-import top.greenyi.green.base.BaseService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import top.greenyi.green.bean.IdCard;
 
 /**
  * @author Green
  */
-public interface IdCardService extends BaseService<IdCard> {
+public interface IIdCardService extends IService<IdCard> {
 
     /**
      * 获取身份证
