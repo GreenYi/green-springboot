@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import top.greenyi.green.common.base.BaseBean;
 
-import java.util.Date;
-
 /**
  * <p>
  * 
@@ -37,9 +35,5 @@ public class SysUser extends BaseBean {
     private String phone;
 
     private String email;
-
-    private Date createTime;
-
-    private Date updateTime;
 
 }

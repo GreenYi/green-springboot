@@ -2,14 +2,19 @@ package top.greenyi.green.common.aspect;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.thread.ThreadUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import top.greenyi.green.common.utils.SysLogUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +22,7 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -27,6 +33,9 @@ import java.util.stream.IntStream;
 @Aspect
 @Slf4j
 public class ControllerAspect {
+
+    @Autowired
+    private SysLogUtils sysLogUtils;
 
     /**
      * 对controller包下所有的类的所有方法增强
@@ -45,6 +54,8 @@ public class ControllerAspect {
      */
     @Around(execute)
     public Object process(ProceedingJoinPoint joinPoint) throws Throwable {
+        // 获取request用于记录日志
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         Method method = ((MethodSignature) joinPoint.getSignature()).getMethod();
         // 获取方法名称
         String methodName = method.getName();
@@ -75,7 +86,10 @@ public class ControllerAspect {
         response = joinPoint.proceed(args);
         long endTime = System.currentTimeMillis();
         // 打印耗时的信息
-        this.printExecTime(methodName, startTime, endTime);
+        long useTime = this.printExecTime(methodName, startTime, endTime);
+        // 创建新线程保存日志
+        ExecutorService executor = ThreadUtil.newExecutor(1);
+        executor.execute(() -> sysLogUtils.saveLog(joinPoint, request, response, useTime));
         return response;
     }
 
@@ -85,10 +99,12 @@ public class ControllerAspect {
      * @param startTime
      * @param endTime
      */
-    private void printExecTime(String methodName, long startTime, long endTime) {
+    private long printExecTime(String methodName, long startTime, long endTime) {
         long diffTime = endTime - startTime;
         if (diffTime > maxReduceTime) {
             log.info("{}方法执行耗时: {}ms", methodName, diffTime);
         }
+        return diffTime;
     }
+
 }
