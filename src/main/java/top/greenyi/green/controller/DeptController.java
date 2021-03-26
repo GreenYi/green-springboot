@@ -1,6 +1,6 @@
 package top.greenyi.green.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -108,9 +108,14 @@ public class DeptController {
      * @return 统一的公共响应体
      */
     @ApiOperation(value = "分页获取所有部门", httpMethod = "GET")
-    @GetMapping("/list-page")
-    public ResponseResult getAllPage() {
-        IPage<Dept> page = deptService.page(new Page<>());
-        return new ResponseResult(ResponseCode.SUCCESS_GET, page);
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page", value = "分页信息",dataType = "Page",dataTypeClass = Page.class,paramType = "body"),
+    })
+    @PostMapping("/list-page")
+    public ResponseResult getAllPage(@RequestBody Page page) {
+        QueryWrapper<Dept> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("ID");
+        Page pageData = deptService.page(page, queryWrapper);
+        return new ResponseResult(ResponseCode.SUCCESS_GET, pageData);
     }
 }
