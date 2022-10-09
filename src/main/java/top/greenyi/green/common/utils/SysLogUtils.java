@@ -20,6 +20,7 @@ import java.util.Arrays;
 
 /**
  * 系统日志工具类
+ *
  * @author Green
  */
 @Slf4j
@@ -29,8 +30,11 @@ public class SysLogUtils {
     @Autowired
     private ISysLogService sysLogService;
 
+    private static final String LOCALHOST = "127.0.0.1";
+
     /**
      * 初始化系统未完成功能的字段
+     *
      * @return 日志实体
      */
     private static SysLog init(long useTime) {
@@ -48,14 +52,21 @@ public class SysLogUtils {
 
     /**
      * 解析请求组装到SysLog
-     * @param sysLog 日志实体
+     *
+     * @param sysLog  日志实体
      * @param request 请求
      * @return 日志实体
      */
     private static SysLog parseRequest(SysLog sysLog, HttpServletRequest request) {
-        String ip = request.getHeader("x-forwarded-for");
-        if (StringUtils.isEmpty(ip)) {
+        String ip = request.getHeader("X-Real-IP");
+        SysLogUtils.log.info("X-Real-IP ip: {}", ip);
+        if (StringUtils.isEmpty(ip) || SysLogUtils.LOCALHOST.equals(ip)) {
+            ip = request.getHeader("X-Forwarded-For");
+            SysLogUtils.log.info("X-Forwarded-For ip: {}", ip);
+        }
+        if (StringUtils.isEmpty(ip) || SysLogUtils.LOCALHOST.equals(ip)) {
             ip = request.getRemoteAddr();
+            SysLogUtils.log.info("RemoteAddr ip: {}", ip);
         }
         String url = request.getRequestURI();
         sysLog.setIpAddress(ip);
@@ -65,7 +76,8 @@ public class SysLogUtils {
 
     /**
      * 解析切入点组装到SysLog
-     * @param sysLog 日志实体
+     *
+     * @param sysLog    日志实体
      * @param joinPoint 切入点
      * @return 日志实体
      */
@@ -89,7 +101,8 @@ public class SysLogUtils {
 
     /**
      * 解析响应组装到SysLog
-     * @param sysLog 日志实体
+     *
+     * @param sysLog   日志实体
      * @param response 响应
      * @return 日志实体
      */
@@ -101,7 +114,7 @@ public class SysLogUtils {
             // 数据库字段ResponseData长度255
             Object data = responseResult.getData();
             if (data != null) {
-                sysLog.setResponseData(StrUtil.sub(data.toString(),0,255));
+                sysLog.setResponseData(StrUtil.sub(data.toString(), 0, 255));
             }
         }
         return sysLog;
@@ -109,9 +122,10 @@ public class SysLogUtils {
 
     /**
      * 保存日志
+     *
      * @param joinPoint 切入点
-     * @param response 响应数据
-     * @param useTime 耗时
+     * @param response  响应数据
+     * @param useTime   耗时
      */
     public void saveLog(ProceedingJoinPoint joinPoint, HttpServletRequest request, Object response, long useTime) {
         try {
@@ -125,9 +139,9 @@ public class SysLogUtils {
             SysLog responseLog = SysLogUtils.parseResponse(joinPointLog, response);
             // 记录日志到数据库
             sysLogService.save(requestLog);
-            log.info("保存日志成功!");
+            SysLogUtils.log.info("保存日志成功!");
         } catch (Exception e) {
-            log.error("保存日志失败: {}", e);
+            SysLogUtils.log.error("保存日志失败: {}", e);
         }
     }
 
