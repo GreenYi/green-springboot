@@ -47,7 +47,6 @@ public class IdCardController {
         } else if (responseCode.equals(HttpStatus.SC_FORBIDDEN)) {
             return new ResponseResult(ResponseCode.RESOURCES_FORBIDDEN, null);
         }
-        // Test
         return new ResponseResult(ResponseCode.SERVICE_ERROR, null);
     }
 
