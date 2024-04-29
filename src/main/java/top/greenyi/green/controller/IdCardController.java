@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,7 +41,14 @@ public class IdCardController {
     @PostMapping("/id-card")
     public ResponseResult getIdCard(@RequestBody IdCard idCard) {
         IdCard responseIdCard = idCardService.getIdCard(idCard.getCardNo(), idCard.getName());
-        return new ResponseResult(ResponseCode.SUCCESS_GET, responseIdCard);
+        Integer responseCode = idCardService.getResponseCode();
+        if (responseCode.equals(HttpStatus.SC_OK)){
+            return new ResponseResult(ResponseCode.SUCCESS_GET, responseIdCard);
+        } else if (responseCode.equals(HttpStatus.SC_FORBIDDEN)) {
+            return new ResponseResult(ResponseCode.RESOURCES_FORBIDDEN, null);
+        }
+        // Test
+        return new ResponseResult(ResponseCode.SERVICE_ERROR, null);
     }
 
 }
