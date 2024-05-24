@@ -2,6 +2,7 @@ package top.greenyi.green.common.api;
 
 import cn.hutool.core.map.MapUtil;
 import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpResponse;
@@ -20,10 +21,13 @@ import java.util.Map;
  */
 @Slf4j
 @Component
+@Data
 public class IdCardApi {
 
     @Value("${idCard.appCode}")
     private String appCode;
+
+    private Integer responseCode;
 
     /**
      * 阿里云的接口
@@ -57,7 +61,10 @@ public class IdCardApi {
 			IdCardApi.log.info("response: {}", response.toString());
             //获取response的body
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                setResponseCode(HttpStatus.SC_OK);
                 result = EntityUtils.toString(response.getEntity());
+            } else {
+                setResponseCode(response.getStatusLine().getStatusCode());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,8 +125,7 @@ public class IdCardApi {
     public IdCard getIdCard(String cardNo, String name) {
         String jsonObject = this.getIdCardApi(cardNo, name);
         Map<String, Map<String, String>> map = this.convertJsonObject(jsonObject);
-        IdCard idCard = this.convertMap(map);
-        return idCard;
+        return this.convertMap(map);
     }
 
 }
