@@ -34,6 +34,11 @@ public enum ResponseCode {
     /**
      * 资源不存在的状态码
      */
+    RESOURCES_FORBIDDEN(403, "禁止访问"),
+
+    /**
+     * 资源不存在的状态码
+     */
     RESOURCES_NOT_EXIST(404, "资源不存在"),
 
     /**
