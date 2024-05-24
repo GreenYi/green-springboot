@@ -14,6 +14,7 @@ import java.net.URL;
 
 /**
  * 暂时没有使用到此API
+ *
  * @author Green
  */
 @Slf4j
@@ -23,7 +24,7 @@ public class WeatherApi {
     @Value("${weather.key}")
     private String weatherKey;
 
-    public String getWeather(String... args){
+    public String getWeather(String... args) {
         //参数字符串，如果拼接在请求链接之后，需要对中文进行 URLEncode   字符集 UTF-8
         String param = "key=" + weatherKey + "&location=北京";
         StringBuilder sb = new StringBuilder();
@@ -32,7 +33,7 @@ public class WeatherApi {
         PrintWriter out = null;
         try {
             //接口地址
-            String url = "https://free-api.heweather.net/s6/weather";
+            String url = "https://free-api.qweather.net/s6/weather";
             URL uri = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) uri.openConnection();
             connection.setRequestMethod("POST");
@@ -49,25 +50,26 @@ public class WeatherApi {
             br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
             String line;
             //缓冲逐行读取
-            while ( ( line = br.readLine() ) != null ) {
+            while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
-            log.info("result:{}", sb.toString());
-        } catch ( Exception ignored ) {
+            WeatherApi.log.info("result:{}", sb.toString());
+        } catch (Exception ignored) {
             ignored.printStackTrace();
         } finally {
             //关闭流
             try {
-                if (is!=null) {
+                if (is != null) {
                     is.close();
                 }
-                if (br!=null) {
+                if (br != null) {
                     br.close();
                 }
-                if (out!=null) {
+                if (out != null) {
                     out.close();
                 }
-            } catch ( Exception ignored ) {}
+            } catch (Exception ignored) {
+            }
         }
         return sb.toString();
     }
